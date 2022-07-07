@@ -1,0 +1,113 @@
+.menu-row{
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.icon-ro{
+    display: flex;
+    justify-content: flex-end;
+   
+}
+
+
+.categoriestxt{
+    display: flex;
+    font-size: x-large;
+    margin-top: 20px;
+    color: black;
+}
+.logoutbtn{
+    display: flex;
+    justify-content: center;
+
+    margin-top: 200px;
+}
+
+.Search{
+    display: flex;
+    margin-top: 0px;
+    --background:white;
+    color: black;
+}
+.col-men{
+    display: flex;
+    justify-content: flex-end;
+  
+   
+    
+}
+
+.home-last{
+    height: 80px;
+    width: 80px;
+
+}
+.icon-l{
+    width: 70px;
+    height: 50px;
+    margin-top: 10px;
+    display: flex;
+    color: black;
+
+}
+.sft{
+    display: flex;
+    justify-content: center;
+    height: 85px;
+    width: 40px;
+    margin-left: 25px;
+}
+.sfo{
+    display: flex;
+    justify-content: center;
+    height: 86px;
+    width: 40px;
+    
+}
+.pizalog{
+    display: flex;
+    justify-content: center;
+    width: 40px;
+    height: 85px;
+}
+.dash-cont{
+    --background: white;
+}
+.logout-row{
+    display: flex;
+    justify-content: center;
+}
+.card1text{
+    display: flex;
+    color: black;
+}
+.card2text{
+    display: flex;
+    color: black;
+}
+.card3text{
+    display: flex;
+    color: black;
+}
+.btntext1{
+    display: flex;
+    color: black;
+}
+.card1{
+    
+    --background: white;
+}
+.card2{
+    
+    --background: white;
+}
+.card3{
+   
+    --background: white;
+}
+.tab{
+    display: flex;
+    --background: white;
+}

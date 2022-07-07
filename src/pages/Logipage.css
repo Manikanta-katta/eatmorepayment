@@ -1,0 +1,84 @@
+ .log-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 150px;
+} 
+.row-input{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    margin-top: 60px;
+  
+}
+.loginhead-row{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.logintxt{
+    font-size: xx-large;
+    font-weight: bold;
+    color: black;
+}
+.row-input-1{
+    display: flex;
+    border: solid black 1px;
+    border-radius: 15px;
+    color: black;
+    
+
+}
+.row-input-2{
+    display: flex;
+    border: solid black 1px;
+    border-radius: 15px;
+    margin-top: 20px;
+    color: black;
+}
+.login-row{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+.login-btn{
+    display: flex;
+    justify-content: center;
+    --background:white;
+    
+
+}
+.or-text{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.line-text{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  
+}
+.ta-ta{
+    --background: white;
+}
+.link-lo{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 20px;
+}
+.tagline-txt{
+    display: flex;
+    color: black;
+}
+.OR{
+    display: flex;
+    color: black;
+}
+.lp-alert{
+    
+    color: black;
+}
