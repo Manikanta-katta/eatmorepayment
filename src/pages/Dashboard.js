@@ -86,28 +86,24 @@ const Dashboard = () => {
               <IonCard className="card1">
                 <IonImg className="pizalog" src={pizalog} alt=" "></IonImg>
                 <IonLabel className="card1text">Pizza</IonLabel>
-              
               </IonCard>
             </IonCol>
             <IonCol size="4">
               <IonCard className="card2">
                 <IonImg className="sfo" src={seafood} alt=" "></IonImg>
                 <IonLabel className="card2text">SeaFood</IonLabel>
-                
               </IonCard>
             </IonCol>
             <IonCol size="4">
               <IonCard className="card3">
                 <IonImg className="sft" src={softdrink} alt=" "></IonImg>
                 <IonLabel className="card3text">SoftDrink</IonLabel>
-                
               </IonCard>
             </IonCol>
           </IonRow>
 
           <IonRow className="logout-row">
             <IonButton
-              
               color="danger"
               className="logoutbtn"
               onClick={handlelogout}

@@ -1,111 +1,94 @@
-
-.image{
-    position: relative;
-
+.image {
+  position: relative;
 }
-.card-row{
-    display: flex;
-    padding-left: 20px;
-    padding-right: 20px;
-    justify-content: center;
-    margin-top: 30px;
-
+.card-row {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: center;
+  margin-top: 30px;
 }
-.inputs{
-    display: flex;
-    flex-direction: column;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    margin-top: -80px;
- 
-
+.inputs {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  margin-top: -80px;
 }
-.input1{
-    display: flex;
-    border: solid black 1px;
-    border-radius: 15px;
-    margin-top: 90px;
-    color: black;
-
-
+.input1 {
+  display: flex;
+  border: solid black 1px;
+  border-radius: 15px;
+  margin-top: 90px;
+  color: black;
 }
-.input2{
-    display: flex;
-    border: solid black 1px;
-    border-radius: 15px;
-    margin-top: 30px;
-    color: black;
+.input2 {
+  display: flex;
+  border: solid black 1px;
+  border-radius: 15px;
+  margin-top: 30px;
+  color: black;
+}
+.input3 {
+  display: flex;
+  border: solid black 1px;
+  border-radius: 15px;
+  margin-top: 30px;
+  color: black;
+}
+.Signupbtn {
+  display: flex;
 
-
+  margin-top: 10px;
 }
-.input3{
-    display: flex;
-    border: solid black 1px;
-    border-radius: 15px;
-    margin-top: 30px;
-    color: black;
-
+.text-row {
+  display: flex;
+  flex-direction: row;
 }
-.Signupbtn{
-    display: flex;
-    
-    margin-top: 10px;   
-
+.or {
+  display: flex;
+  margin-top: 20px;
+  color: black;
 }
-.text-row{
-    display: flex;
-    flex-direction: row;
-
+.text {
+  display: flex;
+  color: black;
 }
-.or{
-    display: flex;
-    margin-top: 20px;
-    color: black;
-
+.signtxt {
+  font-size: xx-large;
+  font-weight: bold;
+  color: black;
 }
-.text{
-    display: flex;
-    color: black;
-    
-}
-.signtxt{
-    font-size: xx-large;
-    font-weight: bold;
-    color: black;
-}
-.home-last1{
-    display: flex;
-    justify-content: center;
-    width: 200px;
-    height: 100px;
+.home-last1 {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  height: 100px;
 }
 
-
-.logo-ro{
-    display: flex;
-    justify-content: center;
+.logo-ro {
+  display: flex;
+  justify-content: center;
 }
-.text-row{
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+.text-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
-.txt{
-    display: flex;
-    margin-left: 15px;
+.txt {
+  display: flex;
+  margin-left: 15px;
 }
-.sign-cont{
-    --background: white;
+.sign-cont {
+  --background: white;
 }
-.ga-mg{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 110px;
+.ga-mg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 110px;
 }
-.lp-tp-alert{
-  
-    color: black;
+.lp-tp-alert {
+  color: black;
 }
-

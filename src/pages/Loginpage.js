@@ -9,7 +9,7 @@ import {
   IonGrid,
   IonRow,
   useIonAlert,
-  useIonToast
+  useIonToast,
 } from "@ionic/react";
 
 import "./Logipage.css";
@@ -57,32 +57,29 @@ const Login = () => {
     authlistener();
   }, []);
 
-  const handleAlert = (err) =>{
+  const handleAlert = (err) => {
     presentAlert({
-      header:"Alert",
+      header: "Alert",
       message: err,
-      buttons:["OK"],
-      backdropDismiss:true,
-      transculent:true,
-      animated:true,
-      cssClass:"lp-alert",
+      buttons: ["OK"],
+      backdropDismiss: true,
+      transculent: true,
+      animated: true,
+      cssClass: "lp-alert",
     });
   };
 
-  const handleToast = (err)=>{
-     present({
-      message:err,
-      position:"top",
-      animated:true,
-      duration:2000,
-      color:"light",
-      model:"ios",
+  const handleToast = (err) => {
+    present({
+      message: err,
+      position: "top",
+      animated: true,
+      duration: 2000,
+      color: "light",
+      model: "ios",
       icon: alertOutline,
-
-     })
-  }
-
- 
+    });
+  };
 
   const handlelogin = () => {
     clearErrors();
@@ -110,8 +107,7 @@ const Login = () => {
 
             break;
         }
-      },);
-   
+      });
   };
 
   return (
@@ -153,8 +149,12 @@ const Login = () => {
             <IonLabel className="OR">OR</IonLabel>
           </IonRow>
           <IonRow className="line-text">
-            <IonLabel className="tagline-txt" >Already have an Account   ? </IonLabel>
-            <Link className="link-lo" to="/signuppage">SignUp</Link>
+            <IonLabel className="tagline-txt">
+              Already have an Account ?{" "}
+            </IonLabel>
+            <Link className="link-lo" to="/signuppage">
+              SignUp
+            </Link>
           </IonRow>
         </IonGrid>
       </IonContent>

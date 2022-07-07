@@ -1,18 +1,14 @@
-.image{
-    display:flex;
-    justify-content: center;
-    margin-top: 100px;
+.image {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
 }
-.getstartbtn{
-    display: flex;
-    justify-content: center;
-    margin-top: 300px;
-  
-    
-    
+.getstartbtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 300px;
 }
-.cont{
-    display: flex;
-    justify-content: center;
-     
+.cont {
+  display: flex;
+  justify-content: center;
 }
