@@ -1,7 +1,6 @@
 import {
   IonButton,
   IonContent,
- 
   IonInput,
   IonPage,
   IonImg,
@@ -10,7 +9,7 @@ import {
   IonRow,
   useIonRouter,
   useIonAlert,
-  useIonToast
+  useIonToast,
 } from "@ionic/react";
 
 import "./Signuppage.css";
@@ -35,7 +34,6 @@ const Signup = () => {
   const [present] = useIonToast();
   const [presentAlert] = useIonAlert();
 
- 
   let router = useIonRouter();
 
   const clearinputs = () => {
@@ -61,32 +59,30 @@ const Signup = () => {
     authlistener();
   }, []);
 
-  const handleAlert = (err) =>{
+  const handleAlert = (err) => {
     presentAlert({
-      header:"Alert",
+      header: "Alert",
       message: err,
-      buttons:["OK"],
-      backdropDismiss:true,
-      transculent:true,
-      animated:true,
-      cssClass:"lp-tp-alert",
+      buttons: ["OK"],
+      backdropDismiss: true,
+      transculent: true,
+      animated: true,
+      cssClass: "lp-tp-alert",
     });
   };
 
-  const handleToast = (err)=>{
-     present({
-      message:err,
-      position:"top",
-      animated:true,
-      duration:2000,
-      color:"light",
-      model:"ios",
+  const handleToast = (err) => {
+    present({
+      message: err,
+      position: "top",
+      animated: true,
+      duration: 2000,
+      color: "light",
+      model: "ios",
       icon: alertOutline,
+    });
+  };
 
-     })
-  }
-
-  
   const handleSignup = () => {
     clearErrors();
     if (password === confirmpassword) {
@@ -103,15 +99,13 @@ const Signup = () => {
           switch (err.code) {
             case "auth/email-already-in-use":
             case "auth/invalid-email":
-              setEmailError(err.message);
-             
+              handleAlert(err);
               break;
             case "auth/weak-password":
-              setPasswordError(err.message);
-               
+              handleAlert(err);
               break;
           }
-        }, handleAlert(emailError));
+        });
     } else {
       handleAlert("password as didn't matched");
     }
@@ -119,8 +113,6 @@ const Signup = () => {
   return (
     <IonPage>
       <IonContent className="sign-cont">
-      
-
         <IonGrid className="ga-mg">
           <IonRow className="logo-ro">
             <IonImg className="home-last1" src={logo} alt=" "></IonImg>
@@ -152,7 +144,6 @@ const Signup = () => {
           </IonRow>
           <IonRow className="card-row">
             <IonButton
-             
               onClick={handleSignup}
               color="danger"
               shape="round"
@@ -166,7 +157,7 @@ const Signup = () => {
           </IonRow>
           <IonRow className="text-row">
             <IonLabel className="text">Don't have any account ? </IonLabel>
-            <Link  to="/loginpage" className="txt">
+            <Link to="/loginpage" className="txt">
               Login
             </Link>
           </IonRow>

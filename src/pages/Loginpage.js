@@ -20,7 +20,7 @@ import img4 from "../assets/images/eatmore logo.png";
 import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
 import { useState, useEffect } from "react";
-import { toastController } from "@ionic/core";
+
 import logo from "../assets/images/Group 12.png";
 import { alertOutline } from "ionicons/icons";
 const Login = () => {
@@ -99,12 +99,10 @@ const Login = () => {
           case "auth/invalid-email":
           case "auth/user-disabled":
           case "auth/user-not-found":
-            setEmailError(err.message);
             handleAlert(err);
             break;
           case "auth/wrong-password":
-            setPasswordError(err.message);
-
+            handleAlert(err);
             break;
         }
       });
