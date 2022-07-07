@@ -85,7 +85,13 @@ const Signup = () => {
 
   const handleSignup = () => {
     clearErrors();
-    if (password === confirmpassword) {
+    if(email == null || email ===""){
+      const msg = "please enter your email";
+      handleToast(msg);
+    }else if (password == null || password ==="") {
+      const msg = "please enter your password";
+      handleToast(msg);
+    }else if (password === confirmpassword) {
       firebaseApp
         .auth()
         .createUserWithEmailAndPassword(email, password, confirmpassword)

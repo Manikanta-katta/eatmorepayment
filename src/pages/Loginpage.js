@@ -23,6 +23,8 @@ import { useState, useEffect } from "react";
 
 import logo from "../assets/images/Group 12.png";
 import { alertOutline } from "ionicons/icons";
+
+
 const Login = () => {
   const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
@@ -83,7 +85,13 @@ const Login = () => {
 
   const handlelogin = () => {
     clearErrors();
-
+    if(email == null || email ===""){
+      const msg = "please enter your email";
+      handleToast(msg);
+    }else if (password == null || password ==="") {
+      const msg = "please enter your password";
+      handleToast(msg);
+    }else{
     firebaseApp
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -106,6 +114,7 @@ const Login = () => {
             break;
         }
       });
+    }
   };
 
   return (
