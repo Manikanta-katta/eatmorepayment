@@ -16,7 +16,7 @@ import "./Logipage.css";
 import img1 from "../assets/images/Google.png";
 import img2 from "../assets/images/Facebook.png";
 import img3 from "../assets/images/Twitter.png";
-import img4 from "../assets/images/eatmore logo.png";
+
 import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
 import { useState, useEffect } from "react";

@@ -1,3 +1,9 @@
+.dash-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
 .menu-row {
   display: flex;
   margin-top: 10px;
@@ -48,23 +54,24 @@
 .sft {
   display: flex;
   justify-content: center;
-  height: 85px;
-  width: 40px;
-  margin-left: 25px;
+  /* height: 85px;
+  width: 40px; */
+  /* margin-left: 25px; */
 }
 .sfo {
   display: flex;
   justify-content: center;
-  height: 86px;
-  width: 40px;
+  /* height: 86px;
+  width: 40px; */
 }
 .pizalog {
   display: flex;
   justify-content: center;
-  width: 40px;
-  height: 85px;
+  /* width: 40px;
+  height: 85px; */
 }
 .dash-cont {
+
   --background: white;
 }
 .logout-row {

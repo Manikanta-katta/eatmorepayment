@@ -28,8 +28,8 @@ import logo from "../assets/images/Group 12.png";
 import { firebaseApp } from "C:/Users/ManikantaKatta/Desktop/Eatmore/src/pages/firebase.js";
 
 import img5 from "../assets/images/Pizza.png";
-import pizalog from "../assets/images/pizalog.png";
-import seafood from "../assets/images/seafood.png";
+import pizalog from "../assets/images/Burger.png";
+
 import softdrink from "../assets/images/softdrink.png";
 
 import { toastController } from "@ionic/core";
@@ -62,7 +62,7 @@ const Dashboard = () => {
   return (
     <IonPage>
       <IonContent fullscreen className="dash-cont">
-        <IonGrid>
+        <IonGrid className="dash-grid">
           <IonRow className="dashboard-row">
             <IonCol>
               <IonImg className="home-last" src={logo} alt=" "></IonImg>
@@ -86,18 +86,21 @@ const Dashboard = () => {
               <IonCard className="card1">
                 <IonImg className="pizalog" src={pizalog} alt=" "></IonImg>
                 <IonLabel className="card1text">Pizza</IonLabel>
+                <IonButton><IonLabel>visit</IonLabel></IonButton>
               </IonCard>
             </IonCol>
             <IonCol size="4">
               <IonCard className="card2">
-                <IonImg className="sfo" src={seafood} alt=" "></IonImg>
+                {/* <IonImg className="sfo" src={seafood} alt=" "></IonImg> */}
                 <IonLabel className="card2text">SeaFood</IonLabel>
+                <IonButton><IonLabel>visit</IonLabel></IonButton>
               </IonCard>
             </IonCol>
             <IonCol size="4">
               <IonCard className="card3">
                 <IonImg className="sft" src={softdrink} alt=" "></IonImg>
                 <IonLabel className="card3text">SoftDrink</IonLabel>
+                <IonButton><IonLabel>visit</IonLabel></IonButton>
               </IonCard>
             </IonCol>
           </IonRow>
