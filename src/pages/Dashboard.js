@@ -24,40 +24,40 @@ import {
   personCircleSharp,
 } from "ionicons/icons";
 import "./Dashboard.css";
-import logo from "../assets/images/Group 12.png";
-import { firebaseApp } from "C:/Users/ManikantaKatta/Desktop/Eatmore/src/pages/firebase.js";
+import logo from "../assets/images/Eatmorelogo.png";
 
-import img5 from "../assets/images/Pizza.png";
+
+
 import pizalog from "../assets/images/Burger.png";
 
 import softdrink from "../assets/images/softdrink.png";
 
-import { toastController } from "@ionic/core";
+
 
 const Dashboard = () => {
   let router = useIonRouter();
-  const handleToast = async (err) => {
-    const toast = await toastController.create({
-      color: "light",
-      position: "top",
-      duration: 3000,
-      message: err,
-      translucent: false,
-      showCloseButton: true,
-    });
-    await toast.present();
-  };
-  const handlelogout = () => {
-    firebaseApp
-      .auth()
-      .signOut()
-      .then(() => {
-        router.push("/loginpage");
-      })
-      .then(() => {
-        handleToast("You have logout successfully");
-      });
-  };
+  // const handleToast = async (err) => {
+  //   const toast = await toastController.create({
+  //     color: "light",
+  //     position: "top",
+  //     duration: 3000,
+  //     message: err,
+  //     translucent: false,
+  //     showCloseButton: true,
+  //   });
+  //   await toast.present();
+  // };
+  // const handlelogout = () => {
+  //   firebaseApp
+  //     .auth()
+  //     .signOut()
+  //     .then(() => {
+  //       router.push("/loginpage");
+  //     })
+  //     .then(() => {
+  //       handleToast("You have logout successfully");
+  //     });
+  // };
 
   return (
     <IonPage>
@@ -68,8 +68,9 @@ const Dashboard = () => {
               <IonImg className="home-last" src={logo} alt=" "></IonImg>
             </IonCol>
             <IonCol className="col-men">
-              {" "}
+         <IonButton routerLink="/menu" className="menu-button">
               <IonIcon className="icon-l" icon={menu} />
+              </IonButton>
             </IonCol>
           </IonRow>
           <IonRow>
@@ -105,7 +106,7 @@ const Dashboard = () => {
             </IonCol>
           </IonRow>
 
-          <IonRow className="logout-row">
+          {/* <IonRow className="logout-row">
             <IonButton
               color="danger"
               className="logoutbtn"
@@ -113,7 +114,7 @@ const Dashboard = () => {
             >
               <IonLabel>Logout</IonLabel>
             </IonButton>
-          </IonRow>
+          </IonRow> */}
         </IonGrid>
       </IonContent>
 

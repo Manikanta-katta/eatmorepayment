@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
 import { useState, useEffect } from "react";
 
-import logo from "../assets/images/Group 12.png";
+import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
 
 const Signup = () => {
@@ -96,7 +96,7 @@ const Signup = () => {
         .auth()
         .createUserWithEmailAndPassword(email, password, confirmpassword)
         .then(() => {
-          router.push("/dashboard");
+          router.push("/loginpage");
         })
         .then(() => {
           handleToast(" You have Registered successfully");
@@ -163,7 +163,7 @@ const Signup = () => {
           </IonRow>
           <IonRow className="text-row">
             <IonLabel className="text">Don't have any account ? </IonLabel>
-            <Link to="/loginpage" className="txt">
+            <Link onClick={clearinputs} to="/loginpage" className="txt">
               Login
             </Link>
           </IonRow>

@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
 import { useState, useEffect } from "react";
 
-import logo from "../assets/images/Group 12.png";
+import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
 
 
@@ -85,6 +85,7 @@ const Login = () => {
 
   const handlelogin = () => {
     clearErrors();
+    clearInputs();
     if(email == null || email ===""){
       const msg = "please enter your email";
       handleToast(msg);
@@ -159,7 +160,7 @@ const Login = () => {
             <IonLabel className="tagline-txt">
               Already have an Account ?{" "}
             </IonLabel>
-            <Link className="link-lo" to="/signuppage">
+            <Link onClick={clearInputs} className="link-lo" to="/signuppage">
               SignUp
             </Link>
           </IonRow>

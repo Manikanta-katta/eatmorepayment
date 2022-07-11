@@ -24,6 +24,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import Menu from "./pages/Menu";
 
 setupIonicReact();
 
@@ -43,6 +44,10 @@ const App = () => (
         <Route exact path="/dashboard">
           <Dashboard />
         </Route>
+        <Route exact path="/menu">
+          <Menu />
+        </Route>
+
 
         <Route exact path="/">
           <Redirect to="/home" />

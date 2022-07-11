@@ -1,4 +1,4 @@
-package com.eatmore.aPP;
+package com.eatmore.app;
 
 import com.getcapacitor.BridgeActivity;
 
