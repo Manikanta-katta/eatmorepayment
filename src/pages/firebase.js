@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import {doc ,getDoc}from "firebase/compat/firestore";
-//import {initializeApp} from "firebase/app"
+import { doc, getDoc } from "firebase/compat/firestore";
+
 import {
   getAuth,
   GoogleAuthProvider,
@@ -20,11 +20,11 @@ const firebaseConfig = {
   messagingSenderId: "608875526497",
   appId: "1:608875526497:web:ebc6bbfb8e59e0ae48ad20",
 };
-// Use this to initialize the firebase App
+
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
- export const db = firebase.firestore(firebaseApp);
+export const db = firebase.firestore(firebaseApp);
 
 export const ath = getAuth(firebaseApp);
 

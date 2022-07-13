@@ -1,5 +1,13 @@
 import { Redirect, Route } from "react-router-dom";
-import { IonApp,useIonAlert,isPlatform,useIonToast,useIonLoading, IonRouterOutlet, setupIonicReact } from "@ionic/react";
+import {
+  IonApp,
+  useIonAlert,
+  isPlatform,
+  useIonToast,
+  useIonLoading,
+  IonRouterOutlet,
+  setupIonicReact,
+} from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import Signup from "./pages/Signuppage";
@@ -28,18 +36,15 @@ import Menu from "./pages/Menu";
 import { App as app } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore"; 
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "C:/Users/ManikantaKatta/Desktop/Eatmore/src/pages/firebase.js";
 
-
-  
-  setupIonicReact();
+setupIonicReact();
 
 const App = () => {
-
   const [updateDetails, setUpdateDetails] = useState({});
   const [appVersion, setAppVersion] = useState("");
-  const updateRef = doc(db, "Eatmore_app_config","PoAv9WJnSiEcmZ0wcX98");
+  const updateRef = doc(db, "Eatmore_app_config", "PoAv9WJnSiEcmZ0wcX98");
   const [show, dismiss] = useIonLoading();
   const [presentAlert] = useIonAlert();
   const [present] = useIonToast();
@@ -64,18 +69,18 @@ const App = () => {
           role: "Download",
           handler: async () => {
             show({
-              message: 'Please wait...',
+              message: "Please wait...",
               duration: 2000,
               spinner: "circular",
               cssClass: "lp-sp-spinner",
               animated: true,
               keyboardClose: true,
-              mode:"ios"
-            })
+              mode: "ios",
+            });
 
             // handleToast("Download Clicked");
             await Browser.open({
-             url: " https://play.google.com/store/apps/details?id=com.eatmore.aPP",
+              url: " https://play.google.com/store/apps/details?id=com.eatmore.aPP",
             });
             dismiss();
           },
@@ -115,49 +120,45 @@ const App = () => {
           const btn = updateDetails.btn;
           handleAlert(msg, title, btn, appVersion);
         }
-      } 
-    } 
-
-    catch (error) {
-    }
+      }
+    } catch (error) {}
   };
 
   useEffect(() => {
     getConfigData();
-    if (isPlatform("android")){
+    if (isPlatform("android")) {
       getAppInfo();
     }
   }, []);
 
-    checkUpdate();
-return(
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/signuppage">
-          <Signup />
-        </Route>
-        <Route exact path="/loginpage">
-          <Login />
-        </Route>
-        <Route exact path="/dashboard">
-          <Dashboard />
-        </Route>
-        <Route exact path="/menu">
-          <Menu />
-        </Route>
+  checkUpdate();
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/signuppage">
+            <Signup />
+          </Route>
+          <Route exact path="/loginpage">
+            <Login />
+          </Route>
+          <Route exact path="/dashboard">
+            <Dashboard />
+          </Route>
+          <Route exact path="/menu">
+            <Menu />
+          </Route>
 
-
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  );
 };
 
 export default App;
