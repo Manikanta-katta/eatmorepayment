@@ -10,6 +10,8 @@ import {
   IonRow,
   useIonAlert,
   useIonToast,
+  IonLoading,
+  useIonLoading,
 } from "@ionic/react";
 
 import "./Logipage.css";
@@ -34,6 +36,9 @@ const Login = () => {
   const [PassswordError, setPasswordError] = useState("");
   const [present] = useIonToast();
   const [presentAlert] = useIonAlert();
+  const [presant, dismiss] = useIonLoading();
+    
+   const [errormessage,seterrormessage] = useState("");
 
   let router = useIonRouter();
 
@@ -45,6 +50,8 @@ const Login = () => {
     setEmailError("");
     setPasswordError("");
   };
+
+
   const authlistener = () => {
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -93,11 +100,17 @@ const Login = () => {
       const msg = "please enter your password";
       handleToast(msg);
     }else{
+      presant({
+        message: 'Loading',
+        duration:2000
+      })
     firebaseApp
-      .auth()
+      .auth() 
       .signInWithEmailAndPassword(email, password)
       .then(() => {
+        dismiss();
         router.push("/dashboard");
+       
       })
       .then(() => {
         handleToast(" You have login successfully");
@@ -108,18 +121,31 @@ const Login = () => {
           case "auth/invalid-email":
           case "auth/user-disabled":
           case "auth/user-not-found":
-            handleAlert(err);
+          
+            dismiss();
+        handleAlert(err);
+         
             break;
+           
           case "auth/wrong-password":
+          
+            dismiss();
             handleAlert(err);
+           
             break;
         }
       });
+      dismiss()
+    
+     
     }
   };
+ 
+ 
 
   return (
     <IonPage>
+     
       <IonContent className="ta-ta">
         <IonGrid className="log-grid">
           <IonRow className="logo-ro">

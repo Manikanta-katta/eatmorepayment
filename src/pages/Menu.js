@@ -12,6 +12,8 @@ import {
   IonText,
   IonList,
   IonItem,
+  IonToolbar,
+  IonHeader
 } from "@ionic/react";
 
 import {
@@ -21,6 +23,7 @@ import {
   personCircleSharp,
 } from "ionicons/icons";
 import { firebaseApp } from "./firebase";
+import './Menu.css';
 const Menu = () => {
   const [present] = useIonToast();
   const handleToast = (err) => {
@@ -39,7 +42,7 @@ const Menu = () => {
       .auth()
       .signOut()
       .then(() => {
-        router.push("/home");
+        router.push("/");
       })
       .then(() => {
         handleToast("You have logout successfully");
@@ -47,41 +50,45 @@ const Menu = () => {
   };
   return (
     <IonPage>
-      <IonContent fullscreen className="dash-cont">
-        <IonGrid className="dash-grid">
-          <IonList>
+      <IonContent fullscreen className="menu-cont">
+        <IonToolbar className="menu-tb">
+          <IonHeader className="menu-h">Menu</IonHeader>
+          </IonToolbar>
+        <IonGrid className="menu-grid">
+          <IonList className="menu-list" >
             <IonItem button>
               <IonRow className="dashboard-row">
-                <IonLabel>Account Details</IonLabel>
+                <IonLabel >Account Details</IonLabel>
               </IonRow>
             </IonItem>
 
             <IonItem button>
               <IonRow>
-                <IonLabel>Settings</IonLabel>
+                <IonLabel  >Settings</IonLabel>
               </IonRow>
             </IonItem>
 
             <IonItem button>
               <IonRow>
-                <IonText >Categories</IonText>
+                <IonText  >Categories</IonText>
               </IonRow>
             </IonItem>
 
             <IonItem button>
               <IonRow>
-                <IonLabel>Your Orders</IonLabel>
+                <IonLabel  > Your Orders</IonLabel>
               </IonRow>
             </IonItem>
 
             <IonItem button>
-              <IonRow className="logout-row">
-                <IonLabel onClick={handlelogout}>Logout</IonLabel>
+              <IonRow >
+                <IonLabel   onClick={handlelogout}>Logout</IonLabel>
               </IonRow>
             </IonItem>
           </IonList>
         </IonGrid>
       </IonContent>
+      
       <IonTabBar slot="bottom" className="tab">
         <IonTabButton tab="tab1">
           <IonIcon icon={homeSharp} />

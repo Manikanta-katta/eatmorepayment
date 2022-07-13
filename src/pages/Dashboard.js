@@ -36,28 +36,7 @@ import softdrink from "../assets/images/softdrink.png";
 
 const Dashboard = () => {
   let router = useIonRouter();
-  // const handleToast = async (err) => {
-  //   const toast = await toastController.create({
-  //     color: "light",
-  //     position: "top",
-  //     duration: 3000,
-  //     message: err,
-  //     translucent: false,
-  //     showCloseButton: true,
-  //   });
-  //   await toast.present();
-  // };
-  // const handlelogout = () => {
-  //   firebaseApp
-  //     .auth()
-  //     .signOut()
-  //     .then(() => {
-  //       router.push("/loginpage");
-  //     })
-  //     .then(() => {
-  //       handleToast("You have logout successfully");
-  //     });
-  // };
+
 
   return (
     <IonPage>
@@ -68,7 +47,7 @@ const Dashboard = () => {
               <IonImg className="home-last" src={logo} alt=" "></IonImg>
             </IonCol>
             <IonCol className="col-men">
-         <IonButton routerLink="/menu" className="menu-button">
+         <IonButton fill="clear" routerLink="/menu" className="menu-button">
               <IonIcon className="icon-l" icon={menu} />
               </IonButton>
             </IonCol>

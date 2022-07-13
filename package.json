@@ -1,11 +1,12 @@
 {
   "name": "Eatmore",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "dependencies": {
     "@capacitor/android": "^3.6.0",
     "@capacitor/core": "^3.6.0",
     "@capacitor/ios": "^3.6.0",
+    "@capacitor/splash-screen": "^1.2.2",
     "@ionic/react": "^6.0.0",
     "@ionic/react-router": "^6.0.0",
     "@robingenz/capacitor-app-update": "^1.3.1",

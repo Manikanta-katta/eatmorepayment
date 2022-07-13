@@ -107,3 +107,14 @@
   display: flex;
   --background: white;
 }
+.icon-l{
+  display: flex;
+  justify-content: center;
+  color: black;
+
+}
+/* .menu-button{
+  display: flex;
+  justify-content: center;
+  --background: white;
+} */

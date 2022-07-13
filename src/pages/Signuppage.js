@@ -10,6 +10,9 @@ import {
   useIonRouter,
   useIonAlert,
   useIonToast,
+  IonSpinner,
+  IonLoading,
+  useIonLoading
 } from "@ionic/react";
 
 import "./Signuppage.css";
@@ -33,6 +36,7 @@ const Signup = () => {
   const [PassswordError, setPasswordError] = useState("");
   const [present] = useIonToast();
   const [presentAlert] = useIonAlert();
+  const [presant, dismiss] =useIonLoading()
 
   let router = useIonRouter();
 
@@ -85,6 +89,7 @@ const Signup = () => {
 
   const handleSignup = () => {
     clearErrors();
+    clearinputs();
     if(email == null || email ===""){
       const msg = "please enter your email";
       handleToast(msg);
@@ -92,11 +97,19 @@ const Signup = () => {
       const msg = "please enter your password";
       handleToast(msg);
     }else if (password === confirmpassword) {
+     
+      presant({
+        message: 'Loading',
+        duration:2000
+      })
       firebaseApp
         .auth()
         .createUserWithEmailAndPassword(email, password, confirmpassword)
+   
         .then(() => {
+          dismiss();
           router.push("/loginpage");
+        
         })
         .then(() => {
           handleToast(" You have Registered successfully");
@@ -105,19 +118,25 @@ const Signup = () => {
           switch (err.code) {
             case "auth/email-already-in-use":
             case "auth/invalid-email":
-              handleAlert(err);
+             dismiss();
+            handleAlert(err);
               break;
             case "auth/weak-password":
-              handleAlert(err);
+             dismiss();
+             handleAlert(err);
               break;
           }
         });
+        
     } else {
-      handleAlert("password as didn't matched");
+
+      //dismiss();
+   handleAlert("password as didn't matched");
     }
   };
   return (
     <IonPage>
+   
       <IonContent className="sign-cont">
         <IonGrid className="ga-mg">
           <IonRow className="logo-ro">
@@ -148,6 +167,7 @@ const Signup = () => {
               onIonChange={(e) => setconfirmPassword(e.detail.value)}
             ></IonInput>
           </IonRow>
+          
           <IonRow className="card-row">
             <IonButton
               onClick={handleSignup}
