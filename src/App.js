@@ -76,11 +76,11 @@ const App = () => {
               animated: true,
               keyboardClose: true,
               mode: "ios",
-            });
+            })
 
-            // handleToast("Download Clicked");
+            
             await Browser.open({
-              url: " https://play.google.com/store/apps/details?id=com.eatmore.aPP",
+              url: "https://play.google.com/store/apps/details?id=com.eatmore.aPP",
             });
             dismiss();
           },
