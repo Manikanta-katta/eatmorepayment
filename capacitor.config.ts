@@ -5,7 +5,10 @@ const config: CapacitorConfig = {
   appName: 'Eatmore',
   webDir: 'build',
   bundledWebRuntime: false,
-
+  // server:{
+  //    url:'http://172.17.7.118:8100',
+  //    cleartext: true
+  //    },
   plugins: {
 
     SplashScreen: {

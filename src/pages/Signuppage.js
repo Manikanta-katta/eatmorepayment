@@ -187,8 +187,14 @@ const Signup = () => {
               Login
             </Link>
           </IonRow>
-          <IonRow>
-            <IonLabel></IonLabel>
+          <IonRow className="gfauth-signrow">
+          <Link >
+              <IonImg className="image1" src={img1} alt=" "></IonImg>
+            </Link>
+            <Link >
+              {" "}
+              <IonImg className="image2" src={img2} alt=" "></IonImg>
+            </Link>
           </IonRow>
         </IonGrid>
       </IonContent>
