@@ -48,6 +48,10 @@ const Dashboard = () => {
      const max = sdata.length + 10;
      const min = max - 10;
     const newData = [];
+
+    if(sdata.length === 30){
+     setInfiniteDisabled(true);
+    }else{
     for(let i = min;i < max;i++){
    data[i].id = data[i].id + i*i;
    newData.push(data[i]);
@@ -59,6 +63,7 @@ const Dashboard = () => {
       ...newData
     ]);
   }
+}
   const loadData = (ev) => {
     console.log(sdata.length);
     setTimeout(() => {
@@ -98,6 +103,8 @@ const Dashboard = () => {
           </IonRow>
         </IonGrid>
       </IonToolbar>
+      
+
       <IonContent fullscreen className="dash-cont">
         
          <IonGrid className="dash-grid">
