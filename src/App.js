@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signuppage";
 import Login from "./pages/Loginpage";
 import Dashboard from "./pages/Dashboard";
+import Myorders from "./pages/myorders";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -76,9 +77,8 @@ const App = () => {
               animated: true,
               keyboardClose: true,
               mode: "ios",
-            })
+            });
 
-            
             await Browser.open({
               url: "https://play.google.com/store/apps/details?id=com.eatmore.aPP",
             });

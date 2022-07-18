@@ -13,7 +13,7 @@ import {
   IonList,
   IonItem,
   IonToolbar,
-  IonHeader
+  IonHeader,
 } from "@ionic/react";
 
 import {
@@ -23,7 +23,8 @@ import {
   personCircleSharp,
 } from "ionicons/icons";
 import { firebaseApp } from "./firebase";
-import './Menu.css';
+import "./Menu.css";
+import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
 const Menu = () => {
   const [present] = useIonToast();
   const handleToast = (err) => {
@@ -37,6 +38,12 @@ const Menu = () => {
     });
   };
   let router = useIonRouter();
+  // const signOutGoogle = async () => {
+  //    await  GoogleAuth.signOut();
+  //     router.push("/loginpage");
+
+  // };
+
   const handlelogout = () => {
     firebaseApp
       .auth()
@@ -53,42 +60,49 @@ const Menu = () => {
       <IonContent fullscreen className="menu-cont">
         <IonToolbar className="menu-tb">
           <IonHeader className="menu-h">Menu</IonHeader>
-          </IonToolbar>
+        </IonToolbar>
         <IonGrid className="menu-grid">
-          <IonList className="menu-list" >
+          <IonList className="menu-list">
             <IonItem button>
               <IonRow className="dashboard-row">
-                <IonLabel >Account Details</IonLabel>
+                <IonLabel>Account Details</IonLabel>
               </IonRow>
             </IonItem>
 
             <IonItem button>
               <IonRow>
-                <IonLabel  >Settings</IonLabel>
+                <IonLabel>Settings</IonLabel>
               </IonRow>
             </IonItem>
 
             <IonItem button>
               <IonRow>
-                <IonText  >Categories</IonText>
+                <IonText>Categories</IonText>
               </IonRow>
             </IonItem>
 
             <IonItem button>
               <IonRow>
-                <IonLabel  > Your Orders</IonLabel>
+                <IonLabel> Your Orders</IonLabel>
               </IonRow>
             </IonItem>
 
             <IonItem button>
-              <IonRow >
-                <IonLabel   onClick={handlelogout}>Logout</IonLabel>
+              <IonRow>
+                <IonLabel
+                  onClick={
+                    // signOutGoogle();
+                    handlelogout
+                  }
+                >
+                  Logout
+                </IonLabel>
               </IonRow>
             </IonItem>
           </IonList>
         </IonGrid>
       </IonContent>
-      
+
       <IonTabBar slot="bottom" className="tab">
         <IonTabButton tab="tab1">
           <IonIcon icon={homeSharp} />
@@ -100,7 +114,7 @@ const Menu = () => {
           <IonLabel>Search</IonLabel>
         </IonTabButton>
 
-        <IonTabButton tab="tab3">
+        <IonTabButton tab="">
           <IonIcon icon={cartSharp} />
           <IonLabel>Orders</IonLabel>
         </IonTabButton>

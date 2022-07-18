@@ -13,19 +13,23 @@ import {
   IonLoading,
   useIonLoading,
 } from "@ionic/react";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider,
+} from "firebase/auth";
 
 import "./Logipage.css";
-import img1 from "../assets/images/Google.png";
-import img2 from "../assets/images/Facebook.png";
-import img3 from "../assets/images/Twitter.png";
 
 import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
 import { useState, useEffect } from "react";
 
+import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+
 import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
-
 
 const Login = () => {
   const [user, setUser] = useState("");
@@ -37,8 +41,8 @@ const Login = () => {
   const [present] = useIonToast();
   const [presentAlert] = useIonAlert();
   const [presant, dismiss] = useIonLoading();
-    
-   const [errormessage,seterrormessage] = useState("");
+
+  const [errormessage, seterrormessage] = useState("");
 
   let router = useIonRouter();
 
@@ -50,7 +54,6 @@ const Login = () => {
     setEmailError("");
     setPasswordError("");
   };
-
 
   const authlistener = () => {
     firebaseApp.auth().onAuthStateChanged((user) => {
@@ -90,62 +93,64 @@ const Login = () => {
     });
   };
 
+  const signInGoogle = async () => {
+    GoogleAuth.initialize();
+    const result = await GoogleAuth.signIn();
+    console.log(result);
+    if (result) {
+      router.push("/dashboard");
+
+      console.log(result);
+    }
+  };
   const handlelogin = () => {
     clearErrors();
     clearInputs();
-    if(email == null || email ===""){
+    if (email == null || email === "") {
       const msg = "please enter your email";
       handleToast(msg);
-    }else if (password == null || password ==="") {
+    } else if (password == null || password === "") {
       const msg = "please enter your password";
       handleToast(msg);
-    }else{
+    } else {
       presant({
-        message: 'Loading',
-        duration:2000
-      })
-    firebaseApp
-      .auth() 
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        dismiss();
-        router.push("/dashboard");
-       
-      })
-      .then(() => {
-        handleToast(" You have login successfully");
-      })
-
-      .catch((err) => {
-        switch (err.code) {
-          case "auth/invalid-email":
-          case "auth/user-disabled":
-          case "auth/user-not-found":
-          
-            dismiss();
-        handleAlert(err);
-         
-            break;
-           
-          case "auth/wrong-password":
-          
-            dismiss();
-            handleAlert(err);
-           
-            break;
-        }
+        message: "Loading",
+        duration: 2000,
       });
-      dismiss()
-    
-     
+      firebaseApp
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          dismiss();
+          router.push("/dashboard");
+        })
+        .then(() => {
+          handleToast(" You have login successfully");
+        })
+
+        .catch((err) => {
+          switch (err.code) {
+            case "auth/invalid-email":
+            case "auth/user-disabled":
+            case "auth/user-not-found":
+              dismiss();
+              handleAlert(err);
+
+              break;
+
+            case "auth/wrong-password":
+              dismiss();
+              handleAlert(err);
+
+              break;
+          }
+        });
+      dismiss();
     }
   };
- 
- 
 
   return (
     <IonPage>
-     
       <IonContent className="ta-ta">
         <IonGrid className="log-grid">
           <IonRow className="logo-ro">
@@ -191,13 +196,20 @@ const Login = () => {
             </Link>
           </IonRow>
           <IonRow className="gfauth-row">
-          <Link >
+            {/* <Link >
               <IonImg className="image1" src={img1} alt=" "></IonImg>
             </Link>
             <Link >
               {" "}
               <IonImg className="image2" src={img2} alt=" "></IonImg>
-            </Link>
+            </Link> */}
+            <IonButton
+              onClick={(e) => {
+                signInGoogle();
+              }}
+            >
+              SignInWithGoogle
+            </IonButton>
           </IonRow>
         </IonGrid>
       </IonContent>

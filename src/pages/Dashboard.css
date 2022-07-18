@@ -1,13 +1,11 @@
-.dash-grid{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-   
-    
+.dash-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .menu-row {
   display: flex;
-  
+
   flex-direction: column;
   padding-left: 15px;
   padding-right: 15px;
@@ -46,11 +44,10 @@
 .home-logo {
   display: flex;
 
-
   width: 55%;
   height: 55%;
 }
-.logo-col{
+.logo-col {
   display: flex;
   width: 50%;
   justify-content: flex-start;
@@ -64,7 +61,6 @@
 }
 
 .dash-cont {
-
   --background: white;
 }
 .logout-row {
@@ -72,23 +68,40 @@
   justify-content: center;
 }
 
-
 .tab {
   display: flex;
   --background: white;
 }
-.icon-l{
+.icon-l {
   display: flex;
 
   color: black;
-
 }
 /* .menu-button{
   display: flex;
   justify-content: center;
   --background: white;
 } */
-.tool-bar{
-  display:flex;
+.tool-bar {
+  display: flex;
 }
-
+.res-name {
+  display: flex;
+  color: black;
+  font-weight: bold;
+}
+.dish-name {
+  display: flex;
+  color: black;
+  font-style: normal;
+  margin-top: 5%;
+}
+.price {
+  display: flex;
+  color: darkgreen;
+  font-style: italic;
+}
+.col-text {
+  display: flex;
+  padding-left: 10%;
+}
