@@ -4,11 +4,8 @@ import {
   IonContent,
   IonIcon,
   IonImg,
-  IonLabel,
   IonPage,
   IonSearchbar,
-  IonTabBar,
-  IonTabButton,
   IonText,
   IonGrid,
   IonRow,
@@ -17,19 +14,11 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   useIonViewWillEnter,
-  IonSkeletonText,
   IonToolbar,
-  IonThumbnail,
 } from "@ionic/react";
 import { data } from "./data";
 import { useState } from "react";
-import {
-  menu,
-  homeSharp,
-  searchSharp,
-  cartSharp,
-  personCircleSharp,
-} from "ionicons/icons";
+import { menu } from "ionicons/icons";
 import "./Dashboard.css";
 import logo from "../assets/images/Eatmorelogo.png";
 
@@ -107,7 +96,6 @@ const Dashboard = () => {
               <IonRow key={Data.id}>
                 <IonCol className="data">
                   <IonCard>
-                    {/* <IonImg src={Data.image } className="image_s"/> */}
                     <LazyLoadImage
                       effect="opacity"
                       src={Data.image}
@@ -148,25 +136,6 @@ const Dashboard = () => {
           </IonInfiniteScroll>
         </IonGrid>
       </IonContent>
-
-      <IonTabBar slot="bottom" className="tab">
-        <IonTabButton tab="tab1">
-          <IonIcon icon={homeSharp} />
-          <IonLabel>home</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="tab2">
-          <IonIcon icon={searchSharp} />
-          <IonLabel>Search</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="tab3">
-          <IonIcon icon={cartSharp} />
-          <IonLabel>Orders</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="tab3">
-          <IonIcon icon={personCircleSharp} />
-          <IonLabel>Account</IonLabel>
-        </IonTabButton>
-      </IonTabBar>
     </IonPage>
   );
 };

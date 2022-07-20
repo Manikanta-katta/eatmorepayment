@@ -1,14 +1,11 @@
 import {
   IonContent,
-  IonIcon,
   useIonRouter,
   IonLabel,
   IonPage,
   IonGrid,
   IonRow,
   useIonToast,
-  IonTabBar,
-  IonTabButton,
   IonText,
   IonList,
   IonItem,
@@ -16,15 +13,9 @@ import {
   IonHeader,
 } from "@ionic/react";
 
-import {
-  searchSharp,
-  homeSharp,
-  cartSharp,
-  personCircleSharp,
-} from "ionicons/icons";
 import { firebaseApp } from "./firebase";
 import "./Menu.css";
-import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+
 const Menu = () => {
   const [present] = useIonToast();
   const handleToast = (err) => {
@@ -49,7 +40,7 @@ const Menu = () => {
       .auth()
       .signOut()
       .then(() => {
-        router.push("/");
+        router.push("/loginpage");
       })
       .then(() => {
         handleToast("You have logout successfully");
@@ -102,28 +93,6 @@ const Menu = () => {
           </IonList>
         </IonGrid>
       </IonContent>
-
-      <IonTabBar slot="bottom" className="tab">
-        <IonTabButton tab="tab1">
-          <IonIcon icon={homeSharp} />
-          <IonLabel>home</IonLabel>
-        </IonTabButton>
-
-        <IonTabButton tab="tab2">
-          <IonIcon icon={searchSharp} />
-          <IonLabel>Search</IonLabel>
-        </IonTabButton>
-
-        <IonTabButton tab="">
-          <IonIcon icon={cartSharp} />
-          <IonLabel>Orders</IonLabel>
-        </IonTabButton>
-
-        <IonTabButton tab="tab3">
-          <IonIcon icon={personCircleSharp} />
-          <IonLabel>Account</IonLabel>
-        </IonTabButton>
-      </IonTabBar>
     </IonPage>
   );
 };

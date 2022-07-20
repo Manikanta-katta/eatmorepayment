@@ -16,9 +16,7 @@ import {
 } from "@ionic/react";
 
 import "./Signuppage.css";
-import img1 from "../assets/images/Google.png";
-import img2 from "../assets/images/Facebook.png";
-import img3 from "../assets/images/Twitter.png";
+
 
 import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
@@ -45,10 +43,10 @@ const Signup = () => {
     setPassword("");
     setconfirmPassword("");
   };
-  const clearErrors = () => {
-    setEmailError("");
-    setPasswordError("");
-  };
+  // const clearErrors = () => {
+  //   setEmailError("");
+  //   setPasswordError("");
+  // };
   const authlistener = () => {
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -88,7 +86,7 @@ const Signup = () => {
   };
 
   const handleSignup = () => {
-    clearErrors();
+    // clearErrors();
     clearinputs();
     if(email == null || email ===""){
       const msg = "please enter your email";
@@ -182,20 +180,12 @@ const Signup = () => {
             <IonLabel className="or">OR</IonLabel>
           </IonRow>
           <IonRow className="text-row">
-            <IonLabel className="text">Don't have any account ? </IonLabel>
+            <IonLabel className="text">Already  have any account ? </IonLabel>
             <Link onClick={clearinputs} to="/loginpage" className="txt">
               Login
             </Link>
           </IonRow>
-          <IonRow className="gfauth-signrow">
-          <Link >
-              <IonImg className="image1" src={img1} alt=" "></IonImg>
-            </Link>
-            <Link >
-              {" "}
-              <IonImg className="image2" src={img2} alt=" "></IonImg>
-            </Link>
-          </IonRow>
+         
         </IonGrid>
       </IonContent>
     </IonPage>

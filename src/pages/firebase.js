@@ -1,16 +1,8 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import { doc, getDoc } from "firebase/compat/firestore";
-// import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  FacebookAuthProvider,
-} from "firebase/auth";
-import { useState, useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
 import { useIonRouter } from "@ionic/react";
 
 const firebaseConfig = {
@@ -23,45 +15,27 @@ const firebaseConfig = {
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
- export const auth = firebase.auth();
+export const auth = firebase.auth();
 
 export const db = firebase.firestore(firebaseApp);
 
 export const ath = getAuth(firebaseApp);
 
 const provider = new GoogleAuthProvider();
- 
-// export const SignInWithGoogle = () => {
-//   const router = useIonRouter();
-//   signInWithPopup(auth, provider)
-//   .then((result) => {
-//     console.log(result);
-//   })
-//     .then(() => {
-//       router.push("/dashboard");
-//     })
-    
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
-// const fprovider = new FacebookAuthProvider();
-// export const sigInWithFacebook = () => {
-//   signInWithPopup(auth, fprovider)
-//     .then((result) => {
-//       console.log(result);
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// };
-// export function useAuth() {
-//   const [currentUser, setcurrentUser] = useState();
-//   useEffect(() => {
-//     const unsub = onAuthStateChanged(auth, (user) => setcurrentUser(user));
-//     return unsub;
-//   }, []);
-//   return currentUser;
-// }
+
+export const SignInWithGoogle = () => {
+  const router = useIonRouter();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log(result);
+    })
+    .then(() => {
+      router.push("/tab", "forward");
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export { firebaseApp };

@@ -13,7 +13,8 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signuppage";
 import Login from "./pages/Loginpage";
 import Dashboard from "./pages/Dashboard";
-import Myorders from "./pages/myorders";
+import Tab from "./pages/Tab";
+// import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -37,7 +38,7 @@ import Menu from "./pages/Menu";
 import { App as app } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "C:/Users/ManikantaKatta/Desktop/Eatmore/src/pages/firebase.js";
 
 setupIonicReact();
@@ -48,17 +49,7 @@ const App = () => {
   const updateRef = doc(db, "Eatmore_app_config", "PoAv9WJnSiEcmZ0wcX98");
   const [show, dismiss] = useIonLoading();
   const [presentAlert] = useIonAlert();
-  const [present] = useIonToast();
-  const handleToast = (msg) => {
-    present({
-      message: msg,
-      position: "top",
-      animated: true,
-      duration: 2000,
-      color: "dark3",
-      mode: "ios",
-    });
-  };
+
   const handleAlert = (msg, title, btn, appVersion) => {
     presentAlert({
       header: title,
@@ -89,7 +80,6 @@ const App = () => {
       backdropDismiss: true,
       translucent: true,
       animated: true,
-      cssClass: "lp-sp-alert",
     });
   };
 
@@ -145,15 +135,13 @@ const App = () => {
           <Route exact path="/loginpage">
             <Login />
           </Route>
-          <Route exact path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route exact path="/menu">
-            <Menu />
+
+          <Route path="/tab">
+            <Tab />
           </Route>
 
           <Route exact path="/">
-            <Redirect to="/home" />
+            <Redirect to="/login" />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>
