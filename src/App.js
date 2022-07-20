@@ -39,7 +39,7 @@ import { App as app } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "C:/Users/ManikantaKatta/Desktop/Eatmore/src/pages/firebase.js";
+import { db } from "./pages/firebase.js";
 
 setupIonicReact();
 
@@ -119,6 +119,7 @@ const App = () => {
     if (isPlatform("android")) {
       getAppInfo();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   checkUpdate();
