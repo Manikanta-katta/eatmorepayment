@@ -10,9 +10,9 @@ import {
 
 import "./Home.css";
 import img from "../assets/images/logo (2).png";
-import { useState, useEffect } from "react";
+
 const Home = () => {
-  const [showLoading, setShowLoading] = useState(false);
+ 
   return (
     <IonPage>
       <IonContent fullscreen color="danger">
