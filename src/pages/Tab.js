@@ -16,7 +16,7 @@ import {
 } from "ionicons/icons";
 import { Redirect, Route } from "react-router-dom";
 //  import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
-import Myorders from "./myorders";
+
 
 import Search from "./Searchpage";
 import Dashboard from "./Dashboard";
@@ -35,9 +35,7 @@ const Tab = () => {
           <Route path="/tab/Searchpage">
             <Search />
           </Route>
-          <Route path="/tab/myorders">
-            <Myorders />
-          </Route>
+        
           <Route path="/tab/menu">
             <Menu />
           </Route>
