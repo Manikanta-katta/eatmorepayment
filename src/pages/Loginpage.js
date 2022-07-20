@@ -21,8 +21,8 @@ import { firebaseApp } from "./firebase";
 import { useState, useEffect } from "react";
 import img1 from "../assets/images/Google.png";
 
-import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
-import { isPlatform } from "@ionic/react";
+//import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
+//import { isPlatform } from "@ionic/react";
 import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
 
@@ -64,7 +64,7 @@ const Login = () => {
   };
   useEffect(() => {
     authlistener();
-  },[] );
+  },[]);
 
   const handleAlert = (err) => {
     presentAlert({
@@ -90,23 +90,23 @@ const Login = () => {
     });
   };
 
-  const signInGoogle = async () => {
-    GoogleAuth.initialize();
-    const result = await GoogleAuth.signIn();
-    console.log(result);
-    if (result) {
-      router.push("/tab", "forward");
+  // const signInGoogle = async () => {
+  //   GoogleAuth.initialize();
+  //   const result = await GoogleAuth.signIn();
+  //   console.log(result);
+  //   if (result) {
+  //     router.push("/tab", "forward");
 
-      console.log(result);
-    }
-  };
-  const googleLogin = () => {
-    if (isPlatform("android")) {
-      signInGoogle();
-    } else {
-      // SignInWithGoogle();
-    }
-  };
+  //     console.log(result);
+  //   }
+  // };
+  // const googleLogin = () => {
+  //   if (isPlatform("android")) {
+  //     signInGoogle();
+  //   } else {
+  //     // SignInWithGoogle();
+  //   }
+  // };
   const handlelogin = () => {
     clearInputs();
     if (email == null || email === "") {
@@ -202,9 +202,9 @@ const Login = () => {
           </IonRow>
           <IonRow className="gfauth-row">
             <IonButton
-              onClick={(e) => {
-                googleLogin();
-              }}
+              // onClick={(e) => {
+              //   googleLogin();
+              // }}
               fill="clear"
             >
               <IonImg className="image1" src={img1} alt=" "></IonImg>
