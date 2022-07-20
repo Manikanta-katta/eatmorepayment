@@ -10,7 +10,7 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  useIonRouter,
+
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   useIonViewWillEnter,
@@ -25,9 +25,18 @@ import logo from "../assets/images/Eatmorelogo.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Dashboard = () => {
-  let router = useIonRouter();
+  //let router = useIonRouter();
   const [sdata, setData] = useState([]);
   const [isInfiniteDisabled, setInfiniteDisabled] = useState(false);
+
+  const hideTabs = () => {
+    const tabsEl = document.querySelector("ion-tab-bar");
+
+    if (tabsEl) {
+      tabsEl.hidden = false;
+    }
+  };
+  useIonViewWillEnter(() => hideTabs());
 
   const pushData = () => {
     const max = sdata.length + 10;

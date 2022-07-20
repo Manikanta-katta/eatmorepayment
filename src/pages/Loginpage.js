@@ -15,7 +15,7 @@ import {
 } from "@ionic/react";
 
 import "./Logipage.css";
-import { SignInWithGoogle } from "./firebase";
+//import { SignInWithGoogle } from "./firebase";
 import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
 import { useState, useEffect } from "react";
@@ -27,21 +27,13 @@ import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
 
 const Login = () => {
-  const [user, setUser] = useState("");
+  const [ setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [present] = useIonToast();
   const [presentAlert] = useIonAlert();
   const [presant, dismiss] = useIonLoading();
 
-  const googleLogin = () => {
-    if (isPlatform("android")) {
-      signInGoogle();
-    } else {
-      SignInWithGoogle();
-    }
-  };
 
   let router = useIonRouter();
 
@@ -72,7 +64,7 @@ const Login = () => {
   };
   useEffect(() => {
     authlistener();
-  }, []);
+  },[] );
 
   const handleAlert = (err) => {
     presentAlert({
@@ -82,7 +74,7 @@ const Login = () => {
       backdropDismiss: true,
       transculent: true,
       animated: true,
-      cssClass: "lp-alert",
+     
     });
   };
 
@@ -106,6 +98,13 @@ const Login = () => {
       router.push("/tab", "forward");
 
       console.log(result);
+    }
+  };
+  const googleLogin = () => {
+    if (isPlatform("android")) {
+      signInGoogle();
+    } else {
+      // SignInWithGoogle();
     }
   };
   const handlelogin = () => {
@@ -147,6 +146,8 @@ const Login = () => {
               handleAlert(err);
 
               break;
+              default:
+                break;
           }
         });
       dismiss();

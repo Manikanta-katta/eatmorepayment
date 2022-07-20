@@ -12,12 +12,12 @@ import {
   searchSharp,
   cartSharp,
   personCircleSharp,
-  tabletPortraitSharp,
+
 } from "ionicons/icons";
 import { Redirect, Route } from "react-router-dom";
 //  import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 import Myorders from "./myorders";
-import AccountDetails from "./Accountdetails";
+
 import Search from "./Searchpage";
 import Dashboard from "./Dashboard";
 import Menu from "./Menu";
@@ -58,7 +58,7 @@ const Tab = () => {
             <IonIcon icon={searchSharp} />
             <IonLabel>Search</IonLabel>
           </IonTabButton>
-          <IonTabButton className="tab-btn" tab="Myorders" href="/tab/myorders">
+          <IonTabButton className="tab-btn" tab="Myorders" >
             <IonIcon icon={cartSharp} />
             <IonLabel>Myorders</IonLabel>
           </IonTabButton>

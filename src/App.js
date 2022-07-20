@@ -3,7 +3,7 @@ import {
   IonApp,
   useIonAlert,
   isPlatform,
-  useIonToast,
+
   useIonLoading,
   IonRouterOutlet,
   setupIonicReact,
@@ -12,7 +12,7 @@ import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import Signup from "./pages/Signuppage";
 import Login from "./pages/Loginpage";
-import Dashboard from "./pages/Dashboard";
+// import Dashboard from "./pages/Dashboard";
 import Tab from "./pages/Tab";
 // import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 
@@ -34,7 +34,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import Menu from "./pages/Menu";
+
 import { App as app } from "@capacitor/app";
 import { Browser } from "@capacitor/browser";
 import { useEffect, useState } from "react";
@@ -119,7 +119,7 @@ const App = () => {
     if (isPlatform("android")) {
       getAppInfo();
     }
-  }, []);
+  },[]);
 
   checkUpdate();
   return (
@@ -141,7 +141,7 @@ const App = () => {
           </Route>
 
           <Route exact path="/">
-            <Redirect to="/login" />
+            <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>

@@ -1,9 +1,10 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import { } from "firebase/compat/firestore";
 
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, } from "firebase/auth";
 
-import { useIonRouter } from "@ionic/react";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyADZ2jRCwQ7kbTggX6UERCn9ihhULsZxgk",
@@ -21,21 +22,21 @@ export const db = firebase.firestore(firebaseApp);
 
 export const ath = getAuth(firebaseApp);
 
-const provider = new GoogleAuthProvider();
+// const provider = new GoogleAuthProvider();
+// const router = useIonRouter();
+// export const SignInWithGoogle = () => {
 
-export const SignInWithGoogle = () => {
-  const router = useIonRouter();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      console.log(result);
-    })
-    .then(() => {
-      router.push("/tab", "forward");
-    })
+//   signInWithPopup(auth, provider)
+//     .then((result) => {
+//       console.log(result);
+//     })
+//     .then(() => {
+//       router.push("/tab", "forward");
+//     })
 
-    .catch((error) => {
-      console.log(error);
-    });
-};
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
 
 export { firebaseApp };

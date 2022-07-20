@@ -10,8 +10,7 @@ import {
   useIonRouter,
   useIonAlert,
   useIonToast,
-  IonSpinner,
-  IonLoading,
+ 
   useIonLoading
 } from "@ionic/react";
 
@@ -26,12 +25,11 @@ import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
 
 const Signup = () => {
-  const [user, setUser] = useState("");
+  const [ setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setconfirmPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [PassswordError, setPasswordError] = useState("");
+ 
   const [present] = useIonToast();
   const [presentAlert] = useIonAlert();
   const [presant, dismiss] =useIonLoading()
@@ -43,10 +41,7 @@ const Signup = () => {
     setPassword("");
     setconfirmPassword("");
   };
-  // const clearErrors = () => {
-  //   setEmailError("");
-  //   setPasswordError("");
-  // };
+ 
   const authlistener = () => {
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -59,7 +54,7 @@ const Signup = () => {
   };
   useEffect(() => {
     authlistener();
-  }, []);
+  },[]);
 
   const handleAlert = (err) => {
     presentAlert({
@@ -123,6 +118,8 @@ const Signup = () => {
              dismiss();
              handleAlert(err);
               break;
+              default:
+                break;
           }
         });
         
