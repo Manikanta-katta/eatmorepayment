@@ -22,6 +22,7 @@ import Search from "./Searchpage";
 import Dashboard from "./Dashboard";
 import Menu from "./Menu";
 import Login from "./Loginpage";
+import ProductDetails from "./productdetail";
 
 const Tab = () => {
   return (
@@ -38,6 +39,9 @@ const Tab = () => {
         
           <Route path="/tab/menu">
             <Menu />
+          </Route>
+          <Route path="/tab/productdetail">
+            <ProductDetails />
           </Route>
 
           <Route exact path="/tab">

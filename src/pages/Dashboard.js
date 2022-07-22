@@ -17,15 +17,18 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import { data } from "./data";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { menu } from "ionicons/icons";
 import "./Dashboard.css";
 import logo from "../assets/images/Eatmorelogo.png";
-
+import ProductDetails from "./productdetail";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
+import { collection,  getDocs, } from "firebase/firestore";
+import { db } from "./firebase";
 const Dashboard = () => {
   //let router = useIonRouter();
+  const[product,setproduct] = useState([]);
+  const productRef = collection(db, "App_products");
   const [sdata, setData] = useState([]);
   const [isInfiniteDisabled, setInfiniteDisabled] = useState(false);
 
@@ -68,6 +71,22 @@ const Dashboard = () => {
   useIonViewWillEnter(() => {
     pushData();
   });
+  useEffect(()=>{
+    getDocs(productRef)
+    .then((snapshot) =>{
+      let products =[]
+      snapshot.docs.forEach((doc)=>{
+        products.push({...doc.data(),id:doc.id})
+      })
+      console.log(products)
+      setproduct(products);
+
+    })
+    .catch(err =>{
+      console.log(err.message)
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
     <IonPage>
       <IonToolbar className="tool-bar">
@@ -100,7 +119,7 @@ const Dashboard = () => {
 
       <IonContent fullscreen className="dash-cont">
         <IonGrid className="dash-grid">
-          {sdata.map((Data) => {
+          {product.map((Data) => {
             return (
               <IonRow key={Data.id}>
                 <IonCol className="data">
@@ -126,7 +145,7 @@ const Dashboard = () => {
                       <IonText className="price"> Price :{Data.price}</IonText>
                     </IonRow>
                     <IonRow>
-                      <IonButton color="danger">Order</IonButton>
+                      <IonButton color="danger" href="/tab/productdetail">Order</IonButton>
                     </IonRow>
                   </IonGrid>
                 </IonCol>
