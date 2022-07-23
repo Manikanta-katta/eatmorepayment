@@ -10,25 +10,26 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   useIonViewWillEnter,
   IonToolbar,
 } from "@ionic/react";
-import { data } from "./data";
-import { useState,useEffect } from "react";
-import { menu } from "ionicons/icons";
+import { datai } from "./data";
+import { useState, useEffect } from "react";
+import { menu, heartOutline } from "ionicons/icons";
 import "./Dashboard.css";
 import logo from "../assets/images/Eatmorelogo.png";
-import ProductDetails from "./productdetail";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { collection,  getDocs, } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 import { db } from "./firebase";
-const Dashboard = () => {
+
+const Dashboard = (props) => {
   //let router = useIonRouter();
-  const[product,setproduct] = useState([]);
+  const [product, setproduct] = useState([]);
   const productRef = collection(db, "App_products");
+
   const [sdata, setData] = useState([]);
   const [isInfiniteDisabled, setInfiniteDisabled] = useState(false);
 
@@ -40,6 +41,23 @@ const Dashboard = () => {
     }
   };
   useIonViewWillEnter(() => hideTabs());
+  // adding to favourite list
+  const addProduct = (id, name, image, price) => {
+    setDoc(doc(db, "Favourite_products", id), {
+      name: name,
+      image: image,
+      price: price,
+    });
+  };
+
+  // adding addtocart
+  const addtoCart = (id, name, image, price) => {
+    setDoc(doc(db, "Addtocart_products", id), {
+      name: name,
+      image: image,
+      price: price,
+    });
+  };
 
   const pushData = () => {
     const max = sdata.length + 10;
@@ -50,8 +68,8 @@ const Dashboard = () => {
       setInfiniteDisabled(true);
     } else {
       for (let i = min; i < max; i++) {
-        data[i].id = data[i].id + i * i;
-        newData.push(data[i]);
+        datai[i].id = datai[i].id + i * i;
+        newData.push(datai[i]);
       }
 
       setData([...sdata, ...newData]);
@@ -71,22 +89,24 @@ const Dashboard = () => {
   useIonViewWillEnter(() => {
     pushData();
   });
-  useEffect(()=>{
-    getDocs(productRef)
-    .then((snapshot) =>{
-      let products =[]
-      snapshot.docs.forEach((doc)=>{
-        products.push({...doc.data(),id:doc.id})
-      })
-      console.log(products)
-      setproduct(products);
 
-    })
-    .catch(err =>{
-      console.log(err.message)
-    })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  // getting products in to dashboard
+  useEffect(() => {
+    getDocs(productRef)
+      .then((snapshot) => {
+        let products = [];
+        snapshot.docs.forEach((doc) => {
+          products.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(products);
+        setproduct(products);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <IonPage>
       <IonToolbar className="tool-bar">
@@ -134,9 +154,24 @@ const Dashboard = () => {
                 <IonCol className="col-text">
                   <IonGrid>
                     <IonRow>
-                      <IonText className="res-name">
-                        {Data.restaurantname}
-                      </IonText>
+                      <IonText className="res-name">{Data.Restaurant}</IonText>
+                      <IonButton
+                        fill="clear"
+                        color="danger"
+                        onClick={() => {
+                          addProduct(
+                            Data.id,
+                            Data.name,
+                            Data.image,
+                            Data.price
+                          );
+                        }}
+                      >
+                        <IonIcon
+                          className="icon-fav"
+                          icon={heartOutline}
+                        ></IonIcon>
+                      </IonButton>
                     </IonRow>
                     <IonRow>
                       <IonText className="dish-name">{Data.name}</IonText>
@@ -145,7 +180,14 @@ const Dashboard = () => {
                       <IonText className="price"> Price :{Data.price}</IonText>
                     </IonRow>
                     <IonRow>
-                      <IonButton color="danger" href="/tab/productdetail">Order</IonButton>
+                      <IonButton
+                        color="danger"
+                        onClick={() => {
+                          addtoCart(Data.id, Data.name, Data.image, Data.price);
+                        }}
+                      >
+                        Addtocart
+                      </IonButton>
                     </IonRow>
                   </IonGrid>
                 </IonCol>
