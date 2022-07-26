@@ -14,6 +14,7 @@ import {
   IonInfiniteScrollContent,
   useIonViewWillEnter,
   IonToolbar,
+  useIonToast,
 } from "@ionic/react";
 import { datai } from "./data";
 import { useState, useEffect } from "react";
@@ -22,17 +23,25 @@ import "./Dashboard.css";
 import logo from "../assets/images/Eatmorelogo.png";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
-import { db } from "./firebase";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { auth, db } from "./firebase";
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   //let router = useIonRouter();
-  const [product, setproduct] = useState([]);
-  const productRef = collection(db, "App_products");
 
+  const [product, setproduct] = useState([]);
+
+  const [present] = useIonToast();
   const [sdata, setData] = useState([]);
   const [isInfiniteDisabled, setInfiniteDisabled] = useState(false);
 
+  const msg = "  Your Item as successfully added to cart";
+  const msg1 = "Item as added in your favaurite list ";
+
+  const [userId, setUserId] = useState();
+  auth.onAuthStateChanged((user) => {
+    setUserId(user.uid);
+  });
   const hideTabs = () => {
     const tabsEl = document.querySelector("ion-tab-bar");
 
@@ -41,22 +50,40 @@ const Dashboard = (props) => {
     }
   };
   useIonViewWillEnter(() => hideTabs());
+  const handleToast = (err) => {
+    present({
+      message: err,
+      position: "top",
+      animated: true,
+      duration: 2000,
+      color: "light",
+      model: "ios",
+    });
+  };
   // adding to favourite list
-  const addProduct = (id, name, image, price) => {
-    setDoc(doc(db, "Favourite_products", id), {
+  const addProduct = (Restaurant, name, image, price) => {
+    const addtocartref = collection(db, "Users", userId, "Favourites");
+    addDoc(addtocartref, {
+      Restaurant: Restaurant,
       name: name,
       image: image,
       price: price,
     });
+    handleToast(msg1);
   };
 
   // adding addtocart
-  const addtoCart = (id, name, image, price) => {
-    setDoc(doc(db, "Addtocart_products", id), {
+
+  const addtoCart = (Restaurant, name, image, price) => {
+    const addtocartref = collection(db, "Users", userId, "Addtocartproducts");
+    addDoc(addtocartref, {
+      Restaurant: Restaurant,
       name: name,
       image: image,
       price: price,
     });
+
+    handleToast(msg);
   };
 
   const pushData = () => {
@@ -91,6 +118,7 @@ const Dashboard = (props) => {
   });
 
   // getting products in to dashboard
+  const productRef = collection(db, "App_products");
   useEffect(() => {
     getDocs(productRef)
       .then((snapshot) => {
@@ -106,7 +134,7 @@ const Dashboard = (props) => {
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const productdetail = async () => {};
   return (
     <IonPage>
       <IonToolbar className="tool-bar">
@@ -143,7 +171,7 @@ const Dashboard = (props) => {
             return (
               <IonRow key={Data.id}>
                 <IonCol className="data">
-                  <IonCard>
+                  <IonCard button onClick={productdetail()} className="cardcolor">
                     <LazyLoadImage
                       effect="opacity"
                       src={Data.image}
@@ -160,7 +188,7 @@ const Dashboard = (props) => {
                         color="danger"
                         onClick={() => {
                           addProduct(
-                            Data.id,
+                            Data.Restaurant,
                             Data.name,
                             Data.image,
                             Data.price
@@ -183,7 +211,12 @@ const Dashboard = (props) => {
                       <IonButton
                         color="danger"
                         onClick={() => {
-                          addtoCart(Data.id, Data.name, Data.image, Data.price);
+                          addtoCart(
+                            Data.Restaurant,
+                            Data.name,
+                            Data.image,
+                            Data.price
+                          );
                         }}
                       >
                         Addtocart

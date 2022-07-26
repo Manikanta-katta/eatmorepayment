@@ -1,19 +1,27 @@
-import { IonPage, IonSearchbar, IonToolbar,IonContent,IonGrid,IonRow,IonText,IonCol,IonButton,IonCard, IonIcon} from "@ionic/react";
+import { IonPage, IonSearchbar, IonToolbar,IonContent,IonGrid,IonRow,IonText,IonCol,IonButton,IonCard, IonIcon, } from "@ionic/react";
 import {
     collection,
     getDocs,
     deleteDoc,
-    doc
+  
     
   } from "firebase/firestore";
-  import { db } from "./firebase";
+  import { db,auth} from "./firebase";
   import { useState, useEffect } from "react";
   import { LazyLoadImage } from "react-lazy-load-image-component";
   import {trashOutline} from "ionicons/icons";
+  import  './Cartdetails.css'
 const Cartlist = () => {
     const [product,setproduct] = useState([]);
-    const CartRef = collection(db, "Addtocart_products");
+    const [userId, setUserId] = useState();
+    auth.onAuthStateChanged(user =>{
+      setUserId(user.uid);
+      console.log(user.uid);
+    
+     })
+
     useEffect(() => {
+      const CartRef = collection(db,"Users",auth.currentUser.uid, "Addtocartproducts");
         getDocs(CartRef)
           .then((snapshot) => {
             let products = [];
@@ -29,7 +37,8 @@ const Cartlist = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
       const ondelete = (id,name,image,price)=>{
-        deleteDoc(doc(db, "Addtocart_products",id),{
+        const deleteref = collection(db,"users",auth.currentUser.uid,"Addtocartproducts")
+        deleteDoc(deleteref,{
           name:name,
           image:image,
           price:price,
@@ -39,10 +48,16 @@ const Cartlist = () => {
 
   return (
     <IonPage>
-      <IonToolbar>
-        <IonSearchbar placeholder="Search"></IonSearchbar>
+      <IonToolbar className="cart-toolbar">
+        <IonSearchbar className="search" placeholder="Search"></IonSearchbar>
+        <IonGrid>
+        <IonRow>
+            <IonText className="Cartproducttxt">CartProducts</IonText>
+          </IonRow>
+        </IonGrid>
       </IonToolbar>
-      <IonContent>
+     
+      <IonContent className="cart-content">
       <IonGrid className="dash-grid">
           {product.map((Data) => {
             return (
@@ -59,14 +74,14 @@ const Cartlist = () => {
                 <IonCol className="col-text">
                   <IonGrid>
                     <IonRow>
-                      <IonText className="res-name">
+                      <IonText className="res-names">
                         {Data.Restaurant}
                       </IonText>
                     
                      
                     </IonRow>
                     <IonRow>
-                      <IonText className="dish-name">{Data.name}</IonText>
+                      <IonText className="res-names">{Data.name}</IonText>
                     </IonRow>
                     <IonRow>
                       <IonText className="price"> Price :{Data.price}</IonText>

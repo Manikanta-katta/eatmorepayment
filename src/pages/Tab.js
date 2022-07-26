@@ -22,6 +22,8 @@ import Search from "./Searchpage";
 import Dashboard from "./Dashboard";
 import Menu from "./Menu";
 import Login from "./Loginpage";
+import ProductDetails from "./Productdetails";
+import './Tab.css'
 
 const Tab = () => {
   return (
@@ -45,16 +47,19 @@ const Tab = () => {
           <Route path="/tab/Favourites">
             <Favourites />
           </Route>
+          <Route path="/tab/ProductDetails">
+            <ProductDetails />
+          </Route>
 
           <Route exact path="/tab">
-            <Redirect to="/tab/dashboard" />
+            <Redirect to="/tab/Dashboard" />
           </Route>
           <Route path="/loginpage">
             <Login />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom" color="white" className="tabBar">
-          <IonTabButton className="tab-btn" tab="home" href="/tab/dashboard">
+        <IonTabBar slot="bottom"  color="white" className="tabBar">
+          <IonTabButton className="tab-btn" tab="Dashboard" href="/tab/Dashboard" >
             <IonIcon icon={homeSharp} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
