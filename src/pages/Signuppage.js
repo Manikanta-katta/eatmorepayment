@@ -23,7 +23,7 @@ import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
 
 const Signup = () => {
-  const [setUser] = useState("");
+  const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setconfirmPassword] = useState("");
@@ -40,20 +40,20 @@ const Signup = () => {
     setconfirmPassword("");
   };
 
-  const authlistener = () => {
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        clearinputs();
-        setUser(user);
-      } else {
-        setUser("");
-      }
-    });
-  };
-  useEffect(() => {
-    authlistener();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const authlistener = () => {
+  //   firebaseApp.auth().onAuthStateChanged((user) => {
+  //     if (user) {
+  //       clearinputs();
+  //       setUser(user);
+  //     } else {
+  //       setUser("");
+  //     }
+  //   });
+  // };
+  // useEffect(() => {
+  //   authlistener();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleAlert = (err) => {
     presentAlert({

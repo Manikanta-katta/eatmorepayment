@@ -3,7 +3,8 @@ import {
     collection,
     getDocs,
     deleteDoc,
-    doc
+    doc,
+    onSnapshot
     
   } from "firebase/firestore";
   import { db,auth } from "./firebase";
@@ -11,44 +12,44 @@ import {
   import { LazyLoadImage } from "react-lazy-load-image-component";
   import {trashOutline} from "ionicons/icons";
   import "./Favourites.css"
+import { UserAuth } from "./Authcontext";
 const Favourites = () => {
   const [product,setproduct] = useState([]);
     const [userId, setUserId] = useState({});
+    const {setfavlist} = UserAuth(); 
     
     auth.onAuthStateChanged(user =>{
       setUserId(user.uid);
 
     
      })
+     const addtofavourite=()=>{
+      const FavouriteRef = collection(db, "Users",auth.currentUser.uid,"Favourites");
+     
+      onSnapshot(FavouriteRef,
+        (snapshot) => {
+          let products = [];
+          snapshot.docs.forEach((doc) => {
+            products.push({ ...doc.data(), id: doc.id });
+          });
+         
+          setfavlist(products.length);
+          setproduct(products);
+        })
+        
+
+     }
     
     useEffect(() => {
   
-
-      const FavouriteRef = collection(db, "Users",auth.currentUser.uid,"Favourites");
-     
-        getDocs(FavouriteRef)
-          .then((snapshot) => {
-            let products = [];
-            snapshot.docs.forEach((doc) => {
-              products.push({ ...doc.data(), id: doc.id });
-            });
-            console.log(products);
-            setproduct(products);
-          })
-          .catch((err) => {
-            console.log(err.message);
-          });
+     addtofavourite();
+    
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
-      const deleteRef = collection(db, "Users",auth.currentUser.uid,"Favourites",);
-      const ondelete = (id,name,image,price)=>{
-        deleteDoc(deleteRef,id,{
-          name:name,
-          image:image,
-          price:price,
-        });
-    
-      }
+      
+      const ondelete =(id)=>{
+        deleteDoc(doc(db,"Users",auth.currentUser.uid,"Favourites",id));
+      } ;
     
   return (
     <IonPage>
@@ -78,14 +79,14 @@ const Favourites = () => {
                 <IonCol className="col-text">
                   <IonGrid>
                     <IonRow>
-                      <IonText className="res-names">
+                      <IonText className="res-name">
                         {Data.Restaurant}
                       </IonText>
                     
                      
                     </IonRow>
                     <IonRow>
-                      <IonText className="res-names">{Data.name}</IonText>
+                      <IonText className="dis-name">{Data.name}</IonText>
                     </IonRow>
                     <IonRow>
                       <IonText className="price"> Price :{Data.price}</IonText>
@@ -99,7 +100,7 @@ const Favourites = () => {
                     </IonRow>
                     <IonRow>
                         <IonButton fill="clear" onClick={()=>{
-                        ondelete(Data.id,Data.name, Data.image, Data.price)
+                        ondelete(Data.id)
                       }}>  <IonIcon icon={trashOutline}></IonIcon></IonButton>
                       
                     </IonRow>

@@ -48,8 +48,8 @@
 .home-logo {
   display: flex;
 
-  width: 35%;
-  height: 35%;
+  width: 45%;
+  height: 45%;
 }
 .logo-col {
   display: flex;
@@ -116,4 +116,7 @@
 .cardcolor{
   display: flex;
   --background: white;
+}
+.icon-fav{
+  margin-top: -21px;
 }

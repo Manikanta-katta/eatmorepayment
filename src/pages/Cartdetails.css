@@ -17,6 +17,12 @@
 
 }
 .res-names{
+    display: flex;
+    color: black;
+    font-weight: bold;
+
+}
+.dis-name{
     color: black;
 }
 .search{

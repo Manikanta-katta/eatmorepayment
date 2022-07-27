@@ -52,20 +52,20 @@ const Login = () => {
 
   useIonViewWillEnter(() => hideTabs());
 
-  const authlistener = () => {
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        clearInputs();
-        setUser(user);
-      } else {
-        setUser("");
-      }
-    });
-  };
-  useEffect(() => {
-    authlistener();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+  // const authlistener = () => {
+  //   firebaseApp.auth().onAuthStateChanged((user) => {
+  //     if (user) {
+  //       clearInputs();
+  //       setUser(user);
+  //     } else {
+  //       setUser("");
+  //     }
+  //   });
+  // };
+  // useEffect(() => {
+  //   authlistener();
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // },[]);
 
   const handleAlert = (err) => {
     presentAlert({

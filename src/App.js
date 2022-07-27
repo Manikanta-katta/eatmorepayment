@@ -39,6 +39,7 @@ import { Browser } from "@capacitor/browser";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "./pages/firebase.js";
+import { AuthContextProvider } from "./pages/Authcontext";
 
 setupIonicReact();
 
@@ -124,6 +125,7 @@ const App = () => {
   checkUpdate();
   return (
     <IonApp>
+      <AuthContextProvider>
       <IonReactRouter>
         <IonRouterOutlet>
           <Route exact path="/home">
@@ -145,6 +147,7 @@ const App = () => {
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>
+      </AuthContextProvider>
     </IonApp>
   );
 };
