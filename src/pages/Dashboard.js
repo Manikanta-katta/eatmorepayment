@@ -15,7 +15,7 @@ import {
   useIonViewWillEnter,
   IonToolbar,
   useIonToast,
-  useIonRouter
+
 } from "@ionic/react";
 import { datai } from "./data";
 import { useState, useEffect } from "react";
@@ -24,13 +24,13 @@ import "./Dashboard.css";
 import logo from "../assets/images/Eatmorelogo.png";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { collection, getDocs, addDoc,onSnapshot,doc } from "firebase/firestore";
+import { collection, getDocs, addDoc, } from "firebase/firestore";
 import { auth, db } from "./firebase";
-import Cartlist from "./Cartdetails";
+
 
 
 const Dashboard = () => {
-  const router = useIonRouter();
+  
 
   const [product, setproduct] = useState([]);
   

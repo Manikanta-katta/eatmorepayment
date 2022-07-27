@@ -1,69 +1,76 @@
-import { IonPage, IonSearchbar, IonToolbar,IonContent,IonIcon,IonGrid,IonRow,IonText,IonCol,IonButton,IonCard} from "@ionic/react";
 import {
-    collection,
-    getDocs,
-    deleteDoc,
-    doc,
-    onSnapshot
-    
-  } from "firebase/firestore";
-  import { db,auth } from "./firebase";
-  import { useState, useEffect } from "react";
-  import { LazyLoadImage } from "react-lazy-load-image-component";
-  import {trashOutline} from "ionicons/icons";
-  import "./Favourites.css"
+  IonPage,
+  IonSearchbar,
+  IonToolbar,
+  IonContent,
+  IonIcon,
+  IonGrid,
+  IonRow,
+  IonText,
+  IonCol,
+  IonButton,
+  IonCard,
+} from "@ionic/react";
+import {
+  collection,
+
+  deleteDoc,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
+import { db, auth } from "./firebase";
+import { useState, useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { trashOutline } from "ionicons/icons";
+import "./Favourites.css";
 import { UserAuth } from "./Authcontext";
 const Favourites = () => {
-  const [product,setproduct] = useState([]);
-    const [userId, setUserId] = useState({});
-    const {setfavlist} = UserAuth(); 
-    
-    auth.onAuthStateChanged(user =>{
-      setUserId(user.uid);
+  const [product, setproduct] = useState([]);
 
-    
-     })
-     const addtofavourite=()=>{
-      const FavouriteRef = collection(db, "Users",auth.currentUser.uid,"Favourites");
-     
-      onSnapshot(FavouriteRef,
-        (snapshot) => {
-          let products = [];
-          snapshot.docs.forEach((doc) => {
-            products.push({ ...doc.data(), id: doc.id });
-          });
-         
-          setfavlist(products.length);
-          setproduct(products);
-        })
-        
+  const { setfavlist } = UserAuth();
 
-     }
-    
-    useEffect(() => {
-  
-     addtofavourite();
-    
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
-      
-      const ondelete =(id)=>{
-        deleteDoc(doc(db,"Users",auth.currentUser.uid,"Favourites",id));
-      } ;
-    
+  const addtofavourite = () => {
+    const FavouriteRef = collection(
+      db,
+      "Users",
+      auth.currentUser.uid,
+      "Favourites"
+    );
+
+    onSnapshot(FavouriteRef, (snapshot) => {
+      let products = [];
+      snapshot.docs.forEach((doc) => {
+        products.push({ ...doc.data(), id: doc.id });
+      });
+
+      setfavlist(products.length);
+      setproduct(products);
+    });
+  };
+
+  useEffect(() => {
+    addtofavourite();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const ondelete = (id) => {
+    deleteDoc(doc(db, "Users", auth.currentUser.uid, "Favourites", id));
+  };
+
   return (
     <IonPage>
       <IonToolbar className="fav-toolbar">
         <IonSearchbar className="search" placeholder="Search"></IonSearchbar>
         <IonGrid>
-        <IonRow>
+          <IonRow>
             <IonText className="Favouritestxt"> Favourites List</IonText>
           </IonRow>
         </IonGrid>
       </IonToolbar>
-   
+
       <IonContent className="fav-content">
-      <IonGrid className="dash-grid">
+        <IonGrid className="dash-grid">
           {product.map((Data) => {
             return (
               <IonRow key={Data.id}>
@@ -79,11 +86,7 @@ const Favourites = () => {
                 <IonCol className="col-text">
                   <IonGrid>
                     <IonRow>
-                      <IonText className="res-name">
-                        {Data.Restaurant}
-                      </IonText>
-                    
-                     
+                      <IonText className="res-name">{Data.Restaurant}</IonText>
                     </IonRow>
                     <IonRow>
                       <IonText className="dis-name">{Data.name}</IonText>
@@ -92,24 +95,26 @@ const Favourites = () => {
                       <IonText className="price"> Price :{Data.price}</IonText>
                     </IonRow>
                     <IonRow>
-                      <IonButton color="danger" onClick={()=>{
-                     
-                      }}>
+                      <IonButton color="danger" onClick={() => {}}>
                         Order
                       </IonButton>
                     </IonRow>
                     <IonRow>
-                        <IonButton fill="clear" onClick={()=>{
-                        ondelete(Data.id)
-                      }}>  <IonIcon icon={trashOutline}></IonIcon></IonButton>
-                      
+                      <IonButton
+                        fill="clear"
+                        onClick={() => {
+                          ondelete(Data.id);
+                        }}
+                      >
+                        {" "}
+                        <IonIcon icon={trashOutline}></IonIcon>
+                      </IonButton>
                     </IonRow>
                   </IonGrid>
                 </IonCol>
               </IonRow>
             );
           })}
-         
         </IonGrid>
       </IonContent>
     </IonPage>
