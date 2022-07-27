@@ -7,30 +7,21 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import {
-  homeSharp,
-  searchSharp,
-  personCircleSharp,
-  heart,
-  cart,
-} from "ionicons/icons";
+import { homeSharp, personCircleSharp, heart, cart } from "ionicons/icons";
 import { Redirect, Route } from "react-router-dom";
-//  import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
+
 import Cartlist from "./Cartdetails";
 import Favourites from "./Favourites";
-import Search from "./Searchpage";
 import Dashboard from "./Dashboard";
 import Menu from "./Menu";
 import Login from "./Loginpage";
-import ProductDetails from "./Productdetail";
-import './Tab.css';
-import PaymentPage from "./Paymentpage";
+
+import "./Tab.css";
 
 import { UserAuth } from "./Authcontext";
 
-
 const Tab = () => {
-const {count,favlist} = UserAuth();
+  const { count, favlist } = UserAuth();
 
   return (
     <IonReactRouter>
@@ -40,26 +31,14 @@ const {count,favlist} = UserAuth();
             <Dashboard />
           </Route>
 
-          {/* <Route path="/tab/Searchpage">
-            <Search />
-          </Route> */}
-
           <Route path="/tab/menu">
             <Menu />
           </Route>
           <Route path="/tab/cartdetails">
-            <Cartlist
-             />
+            <Cartlist />
           </Route>
           <Route path="/tab/Favourites">
             <Favourites />
-          </Route>
-        
-          <Route path="/tab/paymentpage">
-            <PaymentPage />
-          </Route>
-          <Route path="/tab/Productdetail">
-            <ProductDetails />
           </Route>
 
           <Route exact path="/tab">
@@ -69,17 +48,17 @@ const {count,favlist} = UserAuth();
             <Login />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom"  color="white" className="tabBar">
-          <IonTabButton className="tab-btn" tab="Dashboard" href="/tab/Dashboard" >
+        <IonTabBar slot="bottom" color="white" className="tabBar">
+          <IonTabButton
+            className="tab-btn"
+            tab="Dashboard"
+            href="/tab/Dashboard"
+          >
             <IonIcon icon={homeSharp} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          {/* <IonTabButton className="tab-btn" tab="Search" href="/tab/Searchpage">
-            <IonIcon icon={searchSharp} />
-            <IonLabel>Search</IonLabel>
-          </IonTabButton> */}
           <IonTabButton className="tab-btn" tab="Cart" href="/tab/Favourites">
-          <IonLabel className="fav-count">{favlist}</IonLabel>
+            <IonLabel className="fav-count">{favlist}</IonLabel>
             <IonIcon icon={heart} />
             <IonLabel>Favourites</IonLabel>
           </IonTabButton>

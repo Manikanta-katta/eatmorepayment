@@ -18,7 +18,7 @@ import "./Logipage.css";
 //import { SignInWithGoogle } from "./firebase";
 import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import img1 from "../assets/images/Google.png";
 
 //import { GoogleAuth } from "@codetrix-studio/capacitor-google-auth";
@@ -27,7 +27,7 @@ import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
 
 const Login = () => {
-  const [ setUser] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [present] = useIonToast();
@@ -51,21 +51,6 @@ const Login = () => {
   };
 
   useIonViewWillEnter(() => hideTabs());
-
-  // const authlistener = () => {
-  //   firebaseApp.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       clearInputs();
-  //       setUser(user);
-  //     } else {
-  //       setUser("");
-  //     }
-  //   });
-  // };
-  // useEffect(() => {
-  //   authlistener();
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // },[]);
 
   const handleAlert = (err) => {
     presentAlert({

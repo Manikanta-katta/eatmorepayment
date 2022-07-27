@@ -17,13 +17,12 @@ import "./Signuppage.css";
 
 import { Link } from "react-router-dom";
 import { firebaseApp } from "./firebase";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { db } from "./firebase";
 import logo from "../assets/images/Eatmorelogo.png";
 import { alertOutline } from "ionicons/icons";
 
 const Signup = () => {
-  const [user, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setconfirmPassword] = useState("");
@@ -39,21 +38,6 @@ const Signup = () => {
     setPassword("");
     setconfirmPassword("");
   };
-
-  // const authlistener = () => {
-  //   firebaseApp.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       clearinputs();
-  //       setUser(user);
-  //     } else {
-  //       setUser("");
-  //     }
-  //   });
-  // };
-  // useEffect(() => {
-  //   authlistener();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   const handleAlert = (err) => {
     presentAlert({
